@@ -1,0 +1,33 @@
+openapi: 3.0.3
+info:
+  title: CA DCC CannaConnect Compliance Hub - Latest Updates
+  version: "1.0.0"
+servers:
+  - url: https://YOUR-DEPLOYED-DOMAIN-HERE
+paths:
+  /dcc/cannaconnect/latest:
+    get:
+      operationId: getCannaConnectLatestUpdates
+      summary: Get the "Latest updates" items from CA DCC CannaConnect Compliance Hub
+      responses:
+        "200":
+          description: Latest updates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  source: { type: string }
+                  count: { type: integer }
+                  latest_updates:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title: { type: string }
+                        url: { type: string }
+                        description: { type: string, nullable: true }
+                        cta_text: { type: string, nullable: true }
+                        cta_url: { type: string, nullable: true }
+                        source_page: { type: string }
+                      required: [title, url, source_page]
